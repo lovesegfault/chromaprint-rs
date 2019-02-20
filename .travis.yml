@@ -1,0 +1,47 @@
+os:
+  - linux
+  - osx
+
+dist: xenial
+
+addons:
+    apt:
+        packages:
+            - cmake
+            - libchromaprint-dev
+    homebrew:
+        packages:
+            - cmake
+            - chromaprint
+            - pkg-config
+
+language: rust
+
+rust:
+    - stable
+    - beta
+    - nightly
+
+matrix:
+    allow_failures:
+        - rust: nightly
+
+script:
+    - cargo build
+    - cargo test
+    - cargo build --release
+    - cargo test --release
+
+cache: cargo
+
+before_cache:
+  # Travis can't cache files that are not readable by "others"
+    - chmod -R a+r $HOME/.cargo
+
+branches:
+    only:
+        - master
+
+notifications:
+    email:
+        on_success: never
