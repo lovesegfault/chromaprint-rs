@@ -1,7 +1,26 @@
 [package]
 name = "chromaprint-rs"
+description = "Safe bindings to Chromaprint"
+
+documentation = "https://github.com/acoustid/chromaprint"
+homepage = "https://acoustid.org/chromaprint"
+repository = "https://github.com/bemeurer/chromaprint-rs"
+
+readme = "./README.md"
+
+keywords = ["chromaprint", "bindings", "safe", "hash", "audio"]
+categories = ["encoding", "multimedia::audio", "multimedia"]
+
+license = "BSD-3-Clause"
+license_file = "./LICENSE"
+
 version = "0.1.0"
 authors = ["Bernardo Meurer <meurerbernardo@gmail.com>"]
 edition = "2018"
 
+[badges]
+travis-ci = { repository = "bemeurer/chromaprint-rs" }
+maintenance = { status = "actively-developed" }
+
 [dependencies]
+chromaprint_sys = "1.0.1"
