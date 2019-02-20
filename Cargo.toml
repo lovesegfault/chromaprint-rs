@@ -24,3 +24,4 @@ maintenance = { status = "actively-developed" }
 
 [dependencies]
 chromaprint_sys = "1.0.1"
+failure = "0.1.5"
