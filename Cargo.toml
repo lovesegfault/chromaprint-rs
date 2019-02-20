@@ -1,0 +1,7 @@
+[package]
+name = "chromaprint-rs"
+version = "0.1.0"
+authors = ["Bernardo Meurer <meurerbernardo@gmail.com>"]
+edition = "2018"
+
+[dependencies]
