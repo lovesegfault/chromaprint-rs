@@ -20,7 +20,7 @@ pub enum ContextError {
     #[fail(display = "Error computing fingerprint")]
     FingerprintError,
     #[fail(display = "Error casting C-string into Rust: _0")]
-    StringError(std::str::Utf8Error)
+    StringError(std::str::Utf8Error),
 }
 
 impl From<std::str::Utf8Error> for ContextError {
@@ -81,7 +81,7 @@ impl Context {
             return Err(ContextError::FingerprintError);
         }
 
-        let fingerprint_raw: *mut c_char = unsafe {*fingerprint};
+        let fingerprint_raw: *mut c_char = unsafe { *fingerprint };
         if fingerprint_raw.is_null() {
             return Err(ContextError::FingerprintError);
         }
