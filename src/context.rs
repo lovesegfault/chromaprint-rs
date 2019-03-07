@@ -72,20 +72,16 @@ impl Context {
 
     /// Return the calculated fingerprint as a compressed string.
     pub fn get_fingerprint(&mut self) -> Result<String, ContextError> {
-        let fingerprint: *mut *mut c_char = null_mut();
+        let mut fingerprint: *mut c_char = null_mut();
         chroma_call!(
-            sys::chromaprint_get_fingerprint(self.0, fingerprint),
+            sys::chromaprint_get_fingerprint(self.0, &mut fingerprint as *mut *mut c_char),
             ContextError::FingerprintError
         );
         if fingerprint.is_null() {
             return Err(ContextError::FingerprintError);
         }
 
-        let fingerprint_raw: *mut c_char = unsafe { *fingerprint };
-        if fingerprint_raw.is_null() {
-            return Err(ContextError::FingerprintError);
-        }
-        let cstr = unsafe { CStr::from_ptr(fingerprint_raw) };
+        let cstr = unsafe { CStr::from_ptr(fingerprint) };
         let str_slice = cstr.to_str()?;
         Ok(str_slice.to_owned())
     }

@@ -36,8 +36,7 @@ fn main() -> Result<(), Error> {
         //debug!("Feeding block {}", counter);
         block_buffer = block.into_buffer();
         transform_buffer.extend(block_buffer.iter().map(|s| *s as i16));
-        let foo = [0;100];
-        ctx.feed(&foo)?;
+        ctx.feed(&transform_buffer)?;
         transform_buffer.clear();
         // counter += 1;
     }
